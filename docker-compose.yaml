@@ -1,0 +1,39 @@
+services:
+  almacenamiento_metadatos:
+    image: mongo
+    container_name: ${MONGO_CONTAINER_NAME}
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=${MONGO_INITDB_ROOT_USERNAME}
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_INITDB_ROOT_PASSWORD}
+    volumes:
+      - vol_mongo_config:/data/configdb
+      - vol_mongo_metadatos:/data/db
+    ports:
+      - ${MONGO_PORT}:27017
+    networks:
+      - net_mongo
+    
+
+  almacenamiento_documentos:
+    image: minio/minio
+    container_name: ${MINIO_CONTAINER_NAME}
+    command: server /data --console-address ":9001"
+    environment:
+      - MINIO_ROOT_USER=${MINIO_ROOT_USER}
+      - MINIO_ROOT_PASSWORD=${MINIO_ROOT_PASSWORD}
+    volumes:
+      - vol_minio:/data
+    ports:
+      - ${MINIO_PORT}:9000
+      - ${MINIO_CONSOLE_PORT}:9001
+    networks:
+      - net_minio
+
+networks:
+  net_minio:
+  net_mongo:
+
+volumes:
+  vol_minio:
+  vol_mongo_metadatos:
+  vol_mongo_config:

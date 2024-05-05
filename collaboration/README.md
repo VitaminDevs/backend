@@ -57,3 +57,11 @@ backend
 ## Flujo GIT
 
 Trabajaremos con un flujo llamado feature branch, donde los commits no se hacen de manera directa a main, si no a ramas donde se elabora una nueva funcionalidad (feature) o se corrige un error (fix, hotfix) o se refactoriza código (refactor).
+
+## Correr y depurar Flask desde VSCode
+
+Para correr y depurar la aplicacion Flask desde VSCode, es decir, ejecutar paso a paso, inspeccionar variables durante la ejecucion y demas, copia el contenido del archivo [`flask-launch.json`](flask-launch.json) a un directorio que se llame `.vscode` en la [raiz del proyecto](/), dentro de ese directorio crea un archivo llamado `launch.json` y copia la configuracion. Luego en `Run and Debug` y selecciona la opcion para depurar Flask:
+
+![correr y depurar flask](./runndebug.png)
+
+Ahora podras iniciar la aplicacion desde vscode sin necesidad de la linea de comando al apretar `F5`

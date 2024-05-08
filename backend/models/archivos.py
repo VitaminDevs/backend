@@ -11,13 +11,19 @@ from mongoengine import (
 
 # Coleccion "NOTICIAS"
 class Noticias(Document):
-    titulo = StringField(required=True)  #require=True sirve para no dejar el campo vacio (identico al "NOT NULL")
+    identificador = UUIDField(primary_key=True)
+    titulo = StringField(required=True)
     fecha_publicacion = DateTimeField(required=True)
-    fecha_modificacion = DateTimeField()
-    nombre_guardado_minio = StringField()
-    estado = StringField()
-    usuario = StringField()
-    comentario = StringField()
+    fecha_modificacion = ListField(DateTimeField())
+    # esto es una ref diferida, evita errores de ref circular
+    estado = ReferenceField("Estados")
+    # se comento a autor para evitar la dependencia
+    # ya que el modulo Usuarios aun no se ha desarrollado
+    # autor = ReferenceField("Usuario")
+    # autor = ReferenceField(Usuario, reverse_delete_rule=CASCADE)
+    # EN ESTE CASO SI ELIMINAN EL USUARIO, SUS NOTICIAS SERIAN ELIMINADAS (preguntar)
+    comentarios = ListField(StringField())
+
 
 #Coleccion "Usuario"
 class Usuario (Document): 

@@ -33,3 +33,10 @@ class Usuario(Document):
     password = StringField(required=True)
     noticias = ListField(ReferenceField("Noticias"))
 
+
+class Estados(Document):
+    nombre = StringField(unique=True)
+
+
+class Roles(Document):
+    nombre = StringField(unique=True)

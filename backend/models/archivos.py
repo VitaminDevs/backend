@@ -1,7 +1,14 @@
-import pprint
-from os import getenv  #obtiene el vaor de la variable de entorno
-from dotenv import load_dotenv 
-from mongoengine import Document, StringField, DateTimeField, connect
+from mongoengine import (
+    DateTimeField,
+    Document,
+    EmailField,
+    ListField,
+    ReferenceField,
+    StringField,
+    UUIDField,
+)
+
+
 # Coleccion "NOTICIAS"
 class Noticias(Document):
     titulo = StringField(required=True)  #require=True sirve para no dejar el campo vacio (identico al "NOT NULL")

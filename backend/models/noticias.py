@@ -1,7 +1,6 @@
 from mongoengine import (
     DateTimeField,
     Document,
-    EmailField,
     ListField,
     ReferenceField,
     StringField,
@@ -9,7 +8,6 @@ from mongoengine import (
 )
 
 
-# Coleccion "NOTICIAS"
 class Noticias(Document):
     identificador = UUIDField(primary_key=True)
     titulo = StringField(required=True)
@@ -23,20 +21,3 @@ class Noticias(Document):
     # autor = ReferenceField(Usuario, reverse_delete_rule=CASCADE)
     # EN ESTE CASO SI ELIMINAN EL USUARIO, SUS NOTICIAS SERIAN ELIMINADAS (preguntar)
     comentarios = ListField(StringField())
-
-
-# Coleccion "Usuario"
-class Usuario(Document):
-    nombre = StringField(required=True)
-    rol = ReferenceField("Roles", required=True)
-    email = EmailField(required=True)
-    password = StringField(required=True)
-    noticias = ListField(ReferenceField("Noticias"))
-
-
-class Estados(Document):
-    nombre = StringField(unique=True)
-
-
-class Roles(Document):
-    nombre = StringField(unique=True)

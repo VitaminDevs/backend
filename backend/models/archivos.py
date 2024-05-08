@@ -25,22 +25,11 @@ class Noticias(Document):
     comentarios = ListField(StringField())
 
 
-#Coleccion "Usuario"
-class Usuario (Document): 
+# Coleccion "Usuario"
+class Usuario(Document):
     nombre = StringField(required=True)
-    rol = StringField (required=True)
-    email = StringField (required=True)
-    contraseña = StringField (required=True)
-    Salt = StringField () #incriptacion de la contraseña
-    noticias_publicadas = StringField ( )
-    noticias_aprobadas = StringField ()
-    noticias_proceso = StringField ()
-    
-#Coleccion "Estados"
-class Estados (Document): 
-    aprobas = StringField()
-    revision = StringField ()
-    espera = StringField ()
-
-
+    rol = ReferenceField("Roles", required=True)
+    email = EmailField(required=True)
+    password = StringField(required=True)
+    noticias = ListField(ReferenceField("Noticias"))
 

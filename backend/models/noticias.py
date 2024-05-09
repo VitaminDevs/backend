@@ -11,10 +11,10 @@ from mongoengine import (
 class Noticias(Document):
     identificador = UUIDField(primary_key=True)
     titulo = StringField(required=True)
-    fecha_publicacion = DateTimeField(required=True)
+    # fecha_publicacion = DateTimeField(required=True)
     fecha_modificacion = ListField(DateTimeField())
     # esto es una ref diferida, evita errores de ref circular
-    estado = ReferenceField("Estados")
+    # estado = ReferenceField("Estados")
     # se comento a autor para evitar la dependencia
     # ya que el modulo Usuarios aun no se ha desarrollado
     # autor = ReferenceField("Usuario")

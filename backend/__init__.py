@@ -1,12 +1,16 @@
-from flask import Flask, request
+from flask import Flask, g, request
 from flask_cors import CORS
+
+from backend.database import get_mongo_conection
 
 
 def create_app():
     new_app_instance = Flask(__name__)
     cors_app = CORS(new_app_instance)
-    new_app_instance.config['CORS_HEADERS'] = 'Content-Type' 
-    new_app_instance.config['Access-Control-Allow-Credentials'] = "true" 
+    new_app_instance.config["CORS_HEADERS"] = "Content-Type"
+    new_app_instance.config["Access-Control-Allow-Credentials"] = "true"
+
+    get_mongo_conection()
 
     @new_app_instance.route("/")
     def home_page():
@@ -29,7 +33,7 @@ def create_app():
 
     @new_app_instance.after_request
     def allow_cors(response):
-        response.headers['Access-Control-Allow-Credentials'] = "true" 
+        response.headers["Access-Control-Allow-Credentials"] = "true"
         return response
 
     from backend.api import full_api

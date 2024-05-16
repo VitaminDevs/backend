@@ -70,14 +70,48 @@ a {
   text-decoration: none;
   user-select: none;
   width: 111px;
+}
 
-  span {
-    display: inline-block;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    margin-top: 2px;
-    position: absolute;
-    white-space: nowrap;
-  }
+a span {
+  display: inline-block;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin-top: 2px;
+  position: absolute;
+  white-space: nowrap;
+}
+
+.container-logo {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 10px;
+}
+
+.container-logo a {
+  text-decoration: none;
+  color: #000;
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
+.navbar {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  height: 100px; /* adjust if necessary */
+  padding-right: 10px;
+}
+
+.search-wrap {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.search-input {
+  margin-left: 5px;
 }
